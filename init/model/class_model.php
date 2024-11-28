@@ -230,19 +230,7 @@
 
 		  }
 
-		  public function fetchAll_paymentpending($student_id){ 
-            $sql = "SELECT * FROM  tbl_documentrequest WHERE `student_id` = ? AND status = 'Waiting for Payment' ";
-				$stmt = $this->conn->prepare($sql);
-			    $stmt->bind_param("i", $student_id); 
-				$stmt->execute();
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
+	
 
 		  public function fetchAll_releaseddocument($student_id){ 
             $sql = "SELECT * FROM  tbl_documentrequest WHERE `student_id` = ? AND status = 'Releasing'";

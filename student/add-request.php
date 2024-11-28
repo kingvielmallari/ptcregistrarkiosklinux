@@ -148,6 +148,8 @@
                                                     </div>
                                                 </div>
 
+
+
                                                 <div class="form-group row">
                                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Document Name</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
@@ -163,6 +165,29 @@
                                                        </select>
                                                     </div>
                                                 </div>
+                                                <?php
+                                                $conn = new class_model();
+                                                $pendingRequests = $conn->fetchAll_pendingrequest($_SESSION['student_id']);
+                                                $processingRequests = $conn->fetchAll_processing($_SESSION['student_id']);
+                                                $releasedRequests = $conn->fetchAll_releaseddocument($_SESSION['student_id']);
+                                                $existingRequests = array_merge($pendingRequests, $processingRequests, $releasedRequests);
+                                                $existingDocumentNames = array_column($existingRequests, 'document_name');
+                                                ?>
+
+                                                <script>
+                                                document.addEventListener('DOMContentLoaded', () => {
+                                                    const documentSelect = document.getElementById('document_name');
+                                                    const existingDocumentNames = <?= json_encode($existingDocumentNames); ?>;
+
+                                                    for (let i = documentSelect.options.length - 1; i >= 0; i--) {
+                                                        if (existingDocumentNames.includes(documentSelect.options[i].value)) {
+                                                            documentSelect.remove(i);
+                                                        }
+                                                    }
+                                                });
+                                                </script>
+
+
 
                                                  <!-- <div class="form-group row">
                                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">No. of Copies</label>

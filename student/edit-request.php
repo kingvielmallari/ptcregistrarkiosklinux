@@ -63,26 +63,49 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row">
-                                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">Student ID</label>
-                                                    <div class="col-12 col-sm-8 col-lg-6">
-                                                        <input data-parsley-type="alphanum"  name="studentID_no" value="<?= $row['studentID_no']; ?>" type="text" required="" placeholder="" class="form-control" readonly>
-                                                    </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-12 col-sm-3 col-form-label text-sm-right">Document Name</label>
+                                                <div class="col-12 col-sm-8 col-lg-6">
+                                                    <select data-parsley-type="alphanum" type="text" name="document_name" id="document_name" required="" placeholder="" class="form-control">
+                                                        <option value="">&larr;Select Document &rarr;</option>
+                                                        <option value="CTC of Certificate of Registration" <?= $row['document_name'] == 'CTC of Certificate of Registration' ? 'selected' : ''; ?>>CTC of Certificate of Registration</option>
+                                                        <option value="CTC of Grades" <?= $row['document_name'] == 'CTC of Grades' ? 'selected' : ''; ?>>CTC of Grades</option>
+                                                        <option value="Transcript of Records" <?= $row['document_name'] == 'Transcript of Records' ? 'selected' : ''; ?>>Transcript of Records</option>
+                                                        <option value="Certificate of Registration" <?= $row['document_name'] == 'Certificate of Registration' ? 'selected' : ''; ?>>Certificate of Registration</option>
+                                                        <option value="Certificate of Grades" <?= $row['document_name'] == 'Certificate of Grades' ? 'selected' : ''; ?>>Certificate of Grades</option>
+                                                        <option value="Honorable Dismissal" <?= $row['document_name'] == 'Honorable Dismissal' ? 'selected' : ''; ?>>Honorable Dismissal</option>
+                                                    </select>
                                                 </div>
+                                            </div>
+                                            <?php
+                                            $conn = new class_model();
+                                            $pendingRequests = $conn->fetchAll_pendingrequest($_SESSION['student_id']);
+                                            $processingRequests = $conn->fetchAll_processing($_SESSION['student_id']);
+                                            $releasedRequests = $conn->fetchAll_releaseddocument($_SESSION['student_id']);
+                                            $existingRequests = array_merge($pendingRequests, $processingRequests, $releasedRequests);
+                                            $existingDocumentNames = array_column($existingRequests, 'document_name');
+                                            ?>
+
+                                            <script>
+                                            document.addEventListener('DOMContentLoaded', () => {
+                                                const documentSelect = document.getElementById('document_name');
+                                                const existingDocumentNames = <?= json_encode($existingDocumentNames); ?>;
+
+                                                for (let i = documentSelect.options.length - 1; i >= 0; i--) {
+                                                    if (existingDocumentNames.includes(documentSelect.options[i].value) && documentSelect.options[i].value !== '<?= $row['document_name']; ?>') {
+                                                        documentSelect.remove(i);
+                                                    }
+                                                }
+                                            });
+                                            </script>       
+                                                
+                                                
+                                                
+                                                
+                                                
                                                 <div class="form-group row">
-                                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">Document Name</label>
-                                                    <div class="col-12 col-sm-8 col-lg-6">
-                                                        <select data-parsley-type="alphanum" type="text" name="document_name" id="document_name" required="" placeholder="" class="form-control">
-                                                            <option value="">&larr;Select Document &rarr;</option>
-                                                            <option value="CTC of Certificate of Registration" <?= $row['document_name'] == 'CTC of Certificate of Registration' ? 'selected' : '' ?>>CTC of Certificate of Registration</option>
-                                                            <option value="CTC of Grades" <?= $row['document_name'] == 'CTC of Grades' ? 'selected' : '' ?>>CTC of Grades</option>
-                                                            <option value="Transcript of Records" <?= $row['document_name'] == 'Transcript of Records' ? 'selected' : '' ?>>Transcript of Records</option>
-                                                            <option value="Certificate of Registration" <?= $row['document_name'] == 'Certificate of Registration' ? 'selected' : '' ?>>Certificate of Registration</option>
-                                                            <option value="Certificate of Grades" <?= $row['document_name'] == 'Certificate of Grades' ? 'selected' : '' ?>>Certificate of Grades</option>
-                                                            <option value="Honorable Dismissal" <?= $row['document_name'] == 'Honorable Dismissal' ? 'selected' : '' ?>>Honorable Dismissal</option>
-                                                        </select>
-                                                    </div>
-                                                </div>       <div class="form-group row">
                                                 <label class="col-12 col-sm-3 col-form-label text-sm-right">No. of Copies</label>
                                                                                                     <div class="col-12 col-sm-8 col-lg-6">
                                                                                                         <div class="input-group">
@@ -145,6 +168,7 @@
                                                 </div>
                                                 <div class="form-group row text-right">
                                                     <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                        <input type="text" name="studentID_no" value="<?= $student_number; ?>" class="form-control" hidden>
                                                         <input type="text" name="request_id" value="<?= $row['request_id']; ?>" class="form-control" hidden>
                                                         <button type="button" class="btn btn-space btn-primary" id="edit-request">Update</button>
                                                     </div>
