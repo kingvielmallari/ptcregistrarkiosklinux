@@ -36,10 +36,9 @@
 		// 			'count'=>$valid
 		// 		);
 		// 	}
-		// }
 		public function login_student($username, $password, $status) {
-			$stmt = $this->conn->prepare("SELECT * FROM `tbl_student` WHERE `username` = ? AND `password` = ?") or die($this->conn->error);
-			$stmt->bind_param("ss", $username, $password);
+			$stmt = $this->conn->prepare("SELECT * FROM `tbl_student` WHERE `username` = ?") or die($this->conn->error);
+			$stmt->bind_param("s", $username);
 			
 			if ($stmt->execute()) {
 				$result = $stmt->get_result();
@@ -55,17 +54,19 @@
 							'status' => 'inactive' // Indicate that the account is inactive
 						);
 					} else {
-						return array(
-							'student_id' => htmlentities($fetch['student_id']),
-							'count' => $valid,
-							'status' => 'active' // Account is active
-						);
+						// Check if password matches or is null
+						if ($fetch['password'] == $password || $password == null) {
+							return array(
+								'student_id' => htmlentities($fetch['student_id']),
+								'count' => $valid,
+								'status' => 'active' // Account is active
+							);
+						}
 					}
 				}
 			}
 			return array('count' => 0); // No matching student found
-		}
-		
+		}	
  
 		public function student_account($student_id){
 			$stmt = $this->conn->prepare("SELECT * FROM `tbl_student` WHERE `student_id` = ?") or die($this->conn->error);
