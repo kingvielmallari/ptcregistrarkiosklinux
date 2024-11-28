@@ -65,7 +65,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #02047C" >
-                <a class="navbar-brand" href="index.php"><p style="color: #FDC741;font-size: 100%;size: 3em"><img class="logo-prmsu" src="../assets/images/logo.png" alt ="logo" width="50px" height="50px">PTC DOCUMENT REQUEST MANAGEMENT SYSTEM</p></a>
+                <a class="navbar-brand" href="../index.php"><p style="color: #FDC741;font-size: 100%;size: 3em"><img class="logo-prmsu" src="../assets/images/logo.png" alt ="logo" width="50px" height="50px">PTC DOCUMENT REQUEST MANAGEMENT SYSTEM</p></a>
                 
                 
             </nav>

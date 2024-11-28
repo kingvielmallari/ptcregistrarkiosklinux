@@ -42,7 +42,7 @@
 
 		$course = $conn->register($studentID_no, $first_name, $middle_name, $last_name, $course, $year_level, $date_ofbirth, $gender, $complete_address, $email_address, $mobile_number, $username, $password, $status, $is_highschool);
 		if($course == TRUE){
-		    echo '<div class="alert alert-success">Add Student Successfully!</div><script> setTimeout(function() {  window.history.go(-1); }, 1000); </script>';
+		    echo '<div class="alert alert-success">Add Student Successfully!</div><script> setTimeout(function()); </script>';
 
 		  }else{
 			echo '<div class="alert alert-danger">Add Student Failed!</div><script> setTimeout(function() {  window.history.go(-0); }, 1000); </script>';
