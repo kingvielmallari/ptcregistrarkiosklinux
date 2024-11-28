@@ -51,19 +51,18 @@
 				);
 			}	
 		}
-
-	    public function fetchAll_course(){ 
-            $sql = "SELECT * FROM tbl_course";
-				$stmt = $this->conn->prepare($sql); 
-				$stmt->execute();
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
+		public function fetchAll_course($course) { 
+			$sql = "SELECT * FROM tbl_student WHERE course = ?";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->bind_param("s", $course);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$data = array();
+			while ($row = $result->fetch_assoc()) {
+				$data[] = $row;
+			}
+			return $data;
+		}
 
 		public function add_course($course_name, $course_decription){
 	       $stmt = $this->conn->prepare("INSERT INTO `tbl_course` (course_name, course_decription) VALUES(?, ?)") or die($this->conn->error);

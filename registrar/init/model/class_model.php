@@ -51,18 +51,7 @@
 			}	
 		}
 
-	    public function fetchAll_course(){ 
-            $sql = "SELECT * FROM tbl_course";
-				$stmt = $this->conn->prepare($sql); 
-				$stmt->execute();
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
+	
 
 	
 

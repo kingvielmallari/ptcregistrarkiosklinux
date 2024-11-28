@@ -61,28 +61,27 @@
                                         <input data-parsley-type="alphanum" type="text" value="<?= $row['control_no']; ?>" name="control_no" required="" placeholder="" class="form-control" readonly>
                                     </div>
 
-                                                                        <script>
-                                                                            document.addEventListener('DOMContentLoaded', () => {
-                                                                                const documentName = "<?= $row['document_name']; ?>";
-                                                                                const dateRequest = new Date("<?= $row['date_request']; ?>");
-                                                                                let dateReleasing = new Date(dateRequest);
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', () => {
+                                            const documentName = "<?= $row['document_name']; ?>";
+                                            const dateRequest = new Date("<?= $row['date_request']; ?>");
+                                            let dateReleasing = new Date(dateRequest);
 
-                                                                                if (documentName === 'Transcript of Records') {
-                                                                                    dateReleasing.setHours(dateReleasing.getHours() + 288); // 12 days * 24 hours
-                                                                                } else if (documentName === 'Certificate of Grades' || documentName === 'Certificate of Registration') {
-                                                                                    dateReleasing.setHours(dateReleasing.getHours() + 144); // 6 days * 24 hours
-                                                                                } else if (documentName.includes('CTC') || documentName === 'Honorable Dismissal') {
-                                                                                    // Same day, keep date_request as date_releasing
-                                                                                    dateReleasing = dateRequest;
-                                                                                } else {
-                                                                                    dateReleasing.setHours(dateReleasing.getHours() + 24); // 1 day
-                                                                                }
-                                                                                document.querySelector('input[name=date_releasing]').value = dateReleasing.toISOString().split('T')[0];
-                                                                            });
-                                                                        </script>
-                                                                        
-                                </div>
-                                <div class="form-group row">
+                                            if (documentName === 'Transcript of Records') {
+                                                dateReleasing.setHours(dateReleasing.getHours() + 336); // 14 days * 24 hours
+                                            } else if (documentName === 'Certificate of Grades' || documentName === 'Certificate of Registration') {
+                                                dateReleasing.setHours(dateReleasing.getHours() + 144); // 6 days * 24 hours
+                                            } else if (documentName.includes('CTC') || documentName === 'Honorable Dismissal') {
+                                                // Same day, keep date_request as date_releasing
+                                                dateReleasing = dateRequest;
+                                            } else {
+                                                dateReleasing.setHours(dateReleasing.getHours() + 24); // 1 day
+                                            }
+                                            document.querySelector('input[name=date_releasing]').value = dateReleasing.toISOString().split('T')[0];
+                                        });
+                                    </script>
+                                                                    
+                                    </div>    <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Student ID</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
                                         <input data-parsley-type="alphanum" value="<?= $row['studentID_no']; ?>" name="studentID_no" type="text" required="" placeholder="" class="form-control" readonly>

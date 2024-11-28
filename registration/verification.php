@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_id = $_POST['student_id'];
 
     // Check if student already has an account
-    $stmt = $conn->prepare("SELECT first_name FROM tbl_student WHERE studentID_no = ?");
+    $stmt = $conn->prepare("SELECT first_name FROM mis_student WHERE studentID_no = ?");
     $stmt->bind_param("s", $student_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -60,7 +60,7 @@ $conn->close();
     if (isset($_GET['verified']) && $_GET['verified'] == 'true') {
         echo "<div class='alert alert-success'>Student ID verified successfully.</div>";
     }
-    ?>
+    // ?>
     <div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
             <div class="row">

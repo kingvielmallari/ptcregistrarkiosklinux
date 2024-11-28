@@ -77,14 +77,12 @@
                                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Course</label>
                                                     <div class="col-12 col-sm-8 col-lg-6">
                                                        <select data-parsley-type="alphanum" type="text" id="course" required="" placeholder="" class="form-control">
-                                                        <?php 
-                                                            $conn = new class_model();  
-                                                            $course = $conn->fetchAll_course();
-                                                         ?>
-                                                           <option value="">&larr;Select Course &rarr;</option>
-                                                            <?php foreach ($course as $row) { ?>
-                                                           <option value="<?= $row['course_name']; ?>"><?= $row['course_name']; ?></option>
-                                                       <?php } ?>
+                                                       <option value="">&larr;Select Course &rarr;</option>
+                                                           <option value="BSIT">BSIT</option>
+                                                           <option value="BSOA">BSOA</option>
+                                                           <option value="CCS">CCS</option>
+                                                           <option value="CHRM">CHRM</option>
+                                                           <option value="COA">COA</option>
                                                        </select>
                                                     </div>
                                                 </div>
