@@ -1,4 +1,3 @@
-
 <?php
 
 	require 'config/connection.php';
@@ -11,7 +10,7 @@
 		public $dbname = db_name;
 		public $conn;
 		public $error;
- 
+
 		public function __construct(){
 			$this->connect();
 		}
@@ -46,58 +45,10 @@
 				$fetch = $result->fetch_array();
 				return array(
 					'complete_name'=> $fetch['complete_name']
-					// 'last_name'=>$fetch['last_name']
+					
 				);
 			}	
 		}
-
-	    public function fetchAll_course(){ 
-            $sql = "SELECT * FROM tbl_course";
-				$stmt = $this->conn->prepare($sql); 
-				$stmt->execute(); 
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
-
-
-		public function add_course($course_name, $course_decription){
-	       $stmt = $this->conn->prepare("INSERT INTO `tbl_course` (course_name, course_decription) VALUES(?, ?)") or die($this->conn->error);
-			$stmt->bind_param("ss", $course_name, $course_decription);
-			if($stmt->execute()){
-				$stmt->close();
-				$this->conn->close();
-				return true;
-			}
-		}
-
-
-		public function edit_course($course_name, $course_decription, $course_id){
-			$sql = "UPDATE `tbl_course` SET  `course_name` = ?, `course_decription` = ?  WHERE course_id = ?";
-			 $stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("ssi", $course_name, $course_decription, $course_id);
-			if($stmt->execute()){
-				$stmt->close();
-				$this->conn->close();
-				return true;
-			}
-		}
-
-		public function delete_course($course_id){
-			$sql = "DELETE FROM tbl_course WHERE course_id = ?";
-			 $stmt = $this->conn->prepare($sql);
-			$stmt->bind_param("i", $course_id);
-			if($stmt->execute()){
-				$stmt->close();
-				$this->conn->close();
-				return true;
-			}
-		}
-
 
 		public function add_student($IDnumber, $first_name, $middle_name, $last_name, $course, $year_level, $date_ofbirth, $gender, $complete_address, $email_address, $mobile_number, $username, $password, $status){
 			$stmt = $this->conn->prepare("INSERT INTO `tbl_student` (`studentID_no`, `first_name`, `middle_name`, `last_name`, `course`, `year_level`, `date_ofbirth`, `gender`, `complete_address`, `email_address`, `mobile_number`, `username`, `password`, `account_status`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
@@ -155,43 +106,6 @@
 			}
 
 
-	    public function fetchAll_document(){ 
-            $sql = "SELECT * FROM  tbl_document";
-				$stmt = $this->conn->prepare($sql);
-				$stmt->execute();
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
-
-
-
-		public function delete_document($document_id){
-
-
-			$sql="SELECT document_name FROM tbl_document WHERE document_id = ?";
-				$stmt2=$this->conn->prepare($sql);
-				$stmt2->bind_param("i", $document_id);
-				$stmt2->execute();
-				$result2=$stmt2->get_result();
-				$row=$result2->fetch_assoc();
-				$imagepath=$_SERVER['DOCUMENT_ROOT']."/ORDS/student/".$row['document_name'];
-				unlink($imagepath);
-
-				$sql = "DELETE FROM tbl_document WHERE document_id = ?";
-				 $stmt = $this->conn->prepare($sql);
-				$stmt->bind_param("i", $document_id);
-				if($stmt->execute()){
-					$stmt->close();
-					$this->conn->close();
-					return true;
-				}
-			}
-
 	    public function fetchAll_documentrequest(){ 
             $sql = "SELECT * FROM  tbl_documentrequest";
 				$stmt = $this->conn->prepare($sql); 
@@ -215,12 +129,6 @@
 				return true;
 			}
 		}
-
-		
-
-
-
-	
 
 	    public function add_user($complete_name, $desgination, $email_address, $phone_number, $username, $password, $status){
 	       $stmt = $this->conn->prepare("INSERT INTO `tbl_usermanagement` (`complete_name`, `desgination`, `email_address`, `phone_number`, `username`, `password`, `status`) VALUES(?, ?, ?, ?, ?, ?, ?)") or die($this->conn->error);
@@ -306,19 +214,6 @@
 
 		  }
 
-		   public function count_numberoftotalpaid(){ 
-            $sql = "SELECT COUNT(request_id) as count_paid FROM tbl_documentrequest WHERE status = 'Paid'";
-				$stmt = $this->conn->prepare($sql); 
-				$stmt->execute();
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
-
 		 public function count_numberoftotalreceived(){ 
             $sql = "SELECT COUNT(request_id) as count_received FROM tbl_documentrequest WHERE status = 'Received'";
 				$stmt = $this->conn->prepare($sql); 
@@ -331,34 +226,5 @@
 		         return $data;
 
 		  }
-
-
-		 public function count_groupbymonth(){ 
-            $sql = "SELECT COUNT(total_amount) as p_amountcount, SUM(total_amount) as p_amountsum, DATE_FORMAT(date_ofpayment, '%M') as month_s FROM tbl_payment GROUP BY DATE_FORMAT(date_ofpayment, '%M') ORDER BY DATE_FORMAT(date_ofpayment, '%M') ASC";
-				$stmt = $this->conn->prepare($sql); 
-				$stmt->execute();
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
-
-
-	 public function count_groupbycourse(){ 
-            $sql = "SELECT count(course) as count_coursename,course FROM tbl_student GROUP BY course";
-				$stmt = $this->conn->prepare($sql); 
-				$stmt->execute();
-				$result = $stmt->get_result();
-		        $data = array();
-		         while ($row = $result->fetch_assoc()) {
-		                   $data[] = $row;
-		            }
-		         return $data;
-
-		  }
-
 	}	
 ?>

@@ -9,9 +9,7 @@
 		$document_name = trim($_POST['document_name']);
 		$no_ofcopies = trim($_POST['no_ofcopies']);
 	    $date_request = trim($_POST['date_request']);
-		// $date_releasing = trim($_POST['date_releasing']);
 		$request_id = trim($_POST['request_id']);
-
 
 		$request = $conn->edit_request($control_no, $studentID_no, $document_name, $no_ofcopies, $date_request, $request_id);
 		if($request == TRUE){

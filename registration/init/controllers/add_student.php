@@ -20,7 +20,6 @@
  	return $ran;
  }
 
-
 	if(ISSET($_POST)){
 		$conn = new class_model();
 

@@ -13,11 +13,9 @@
 		$received = "Received";
 		$student_id = trim($_POST['student_id']);
 
-
 		$request = $conn->add_request($control_no, $studentID_no, $email_address, $document_name, $no_ofcopies, $date_request, $received, $student_id);
 		if($request == TRUE){
 		    echo '<div class="alert alert-success">Add Request Successfully!</div><script> {  window.location.href = "/student/request-list.php" }); </script>';
-
 		  }else{
 			echo '<div class="alert alert-danger">Add Request Failed!</div><script> setTimeout(function() {  window.history.go(-0); }, 1000); </script>';
 		}

@@ -1,19 +1,18 @@
 <?php
-require 'vendor/autoload.php'; // PhpSpreadsheet autoload
+require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-include(__DIR__ . '/init/model/config/connection2.php'); // Include DB connection
+include(__DIR__ . '/init/model/config/connection2.php'); 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excel_file'])) {
     $file = $_FILES['excel_file']['tmp_name'];
 
     try {
-        // Load the spreadsheet
+
         $spreadsheet = IOFactory::load($file);
         $sheet = $spreadsheet->getActiveSheet();
         $rows = $sheet->toArray();
 
-        // Skip header row (assuming first row contains column names)
         array_shift($rows);
 
         foreach ($rows as $row) {
@@ -30,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excel_file'])) {
             $mobile_number = $row[10];
             $username = $row[11];
 
-            // Insert data into database
             $sql = "INSERT INTO tbl_student (
                     studentID_no, first_name, middle_name, last_name, course, 
                     year_level, date_ofbirth, gender, complete_address, email_address, 

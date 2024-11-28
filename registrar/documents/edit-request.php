@@ -1,22 +1,8 @@
     <?php include('main_header/header.php'); ?>
-    <!-- ============================================================== -->
-    <!-- end navbar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- left sidebar -->
-    <!-- ============================================================== -->
     <?php include('left_sidebar/sidebar.php'); ?>
-    <!-- ============================================================== -->
-    <!-- end left sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- wrapper  -->
-    <!-- ============================================================== -->
+
     <div class="dashboard-wrapper">
-        <div class="container-fluid  dashboard-content">
-            <!-- ============================================================== -->
-            <!-- pageheader -->
-            <!-- ============================================================== -->
+        <div class="container-fluid dashboard-content">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
@@ -32,9 +18,6 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end pageheader -->
-            <!-- ============================================================== -->
             <?php 
                 include '../init/model/config/connection2.php';
                 $GET_reqid = intval($_GET['request']);
@@ -60,7 +43,6 @@
                                     <div class="col-12 col-sm-8 col-lg-6">
                                         <input data-parsley-type="alphanum" type="text" value="<?= $row['control_no']; ?>" name="control_no" required="" placeholder="" class="form-control" readonly>
                                     </div>
-
                                     <script>
                                         document.addEventListener('DOMContentLoaded', () => {
                                             const documentName = "<?= $row['document_name']; ?>";
@@ -68,20 +50,19 @@
                                             let dateReleasing = new Date(dateRequest);
 
                                             if (documentName === 'Transcript of Records') {
-                                                dateReleasing.setHours(dateReleasing.getHours() + 336); // 14 days * 24 hours
+                                                dateReleasing.setHours(dateReleasing.getHours() + 336); 
                                             } else if (documentName === 'Certificate of Grades' || documentName === 'Certificate of Registration') {
-                                                dateReleasing.setHours(dateReleasing.getHours() + 144); // 6 days * 24 hours
+                                                dateReleasing.setHours(dateReleasing.getHours() + 144); 
                                             } else if (documentName.includes('CTC') || documentName === 'Honorable Dismissal') {
-                                                // Same day, keep date_request as date_releasing
                                                 dateReleasing = dateRequest;
                                             } else {
-                                                dateReleasing.setHours(dateReleasing.getHours() + 24); // 1 day
+                                                dateReleasing.setHours(dateReleasing.getHours() + 24);
                                             }
                                             document.querySelector('input[name=date_releasing]').value = dateReleasing.toISOString().split('T')[0];
                                         });
                                     </script>
-                                                                    
-                                    </div>    <div class="form-group row">
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Student ID</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
                                         <input data-parsley-type="alphanum" value="<?= $row['studentID_no']; ?>" name="studentID_no" type="text" required="" placeholder="" class="form-control" readonly>
@@ -125,14 +106,12 @@
                                 <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Status</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-
                                         <select data-parsley-type="alphanum" type="text" id="status" required="" placeholder="" class="form-control">
                                             <option value="Processing" <?php echo ($row['status'] == 'Processing') ? 'selected' : ''; ?> style="background-color: orange;color: #fff">Processing</option>
                                             <option value="Declined" <?php echo ($row['status'] == 'Declined') ? 'selected' : ''; ?> style="background-color: red;color: #fff">Declined</option>
                                             <option value="Releasing" <?php echo ($row['status'] == 'Releasing') ? 'selected' : ''; ?> style="background-color: green;color: #fff">Releasing</option>
                                             <option value="Released" <?php echo ($row['status'] == 'Released') ? 'selected' : ''; ?> style="background-color: blue;color: #fff">Released</option>
                                         </select>   
-                                    
                                     </div>
                                 </div>
                                 <div class="form-group row text-right">
@@ -150,10 +129,7 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
+
     <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../assets/vendor/parsley/parsley.js"></script>
@@ -221,13 +197,10 @@
         });
     </script>
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict';
             window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
                 var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function(form) {
                     form.addEventListener('submit', function(event) {
                         if (form.checkValidity() === false) {

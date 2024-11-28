@@ -19,12 +19,10 @@
 		}
 		return $ran;
 	}
-	
 
 		if(ISSET($_POST)){
 			$conn = new class_model();
 
-		// $studentID_no = trim($_POST['studentID_no']);
 		$first_name = trim($_POST['first_name']);
 		$middle_name = trim($_POST['middle_name']);
 		$last_name = trim($_POST['last_name']);

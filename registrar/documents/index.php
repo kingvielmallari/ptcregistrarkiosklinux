@@ -1,22 +1,9 @@
     <?php include('main_header/header.php'); ?>
-    <!-- ============================================================== -->
-    <!-- end navbar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- left sidebar -->
-    <!-- ============================================================== -->
+
     <?php include('left_sidebar/sidebar.php'); ?>
-    <!-- ============================================================== -->
-    <!-- end left sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- wrapper  -->
-    <!-- ============================================================== -->
+
     <div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
-            <!-- ============================================================== -->
-            <!-- pageheader  -->
-            <!-- ============================================================== -->
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
@@ -32,9 +19,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- pageheader  -->
-            <!-- ============================================================== -->
+            
             <div class="row">
                 <!-- metric -->
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
@@ -57,7 +42,7 @@
                         <a href="request.php" class="btn btn-primary" style="background-color:#1269AF">View</a>
                     </div>
                 </div>
-                <!-- metric -->
+                 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-body">
@@ -78,10 +63,8 @@
                         <a href="request.php" class="btn btn-primary" style="background-color:#1269AF">View</a>
                     </div>
                 </div>
-                <!-- metric -->
-
-                  <!-- metric -->
-                  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+               
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-body">
                             <?php 
@@ -101,7 +84,7 @@
                         <a href="request.php" class="btn btn-primary" style="background-color:#1269AF">View</a>
                     </div>
                 </div>
-                <!-- metric -->
+                 
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-body">
@@ -122,7 +105,7 @@
                         <a href="request.php" class="btn btn-primary" style="background-color:#1269AF">View</a>
                     </div>
                 </div>
-                <!-- metric -->
+          
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-body">
@@ -143,7 +126,7 @@
                         <a href="request.php" class="btn btn-primary" style="background-color:#1269AF">View</a>
                     </div>
                 </div>
-                <!-- metric -->
+               
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card">
                         <div class="card-body">
@@ -166,27 +149,14 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- end wrapper  -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper  -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <!-- jquery 3.3.1 js-->
+        
     <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <!-- bootstrap bundle js-->
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-    <!-- chartjs js-->
     <script src="../assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
     <script src="../assets/vendor/charts/charts-bundle/chartjs.js"></script>
-
-    <!-- main js-->
     <script src="../assets/libs/js/main-js.js"></script>
-    <!-- dashboard sales js-->
-    
     <script type="text/javascript">
         $(document).ready(function(){
             var firstName = $('#firstName').text();
@@ -197,39 +167,36 @@
     </script>
 
     <script>
-    $(document).ready(function(){
-
-        function load_unseen_notification(view = '')
-        {
-            $.ajax({
-                url:"../init/controllers/fetch.php",
-                method:"POST",
-                data:{view:view},
-                dataType:"json",
-                success:function(data)
-                {
-                    $('.dropdown-menu_1').html(data.notification);
-                    if(data.unseen_notification > 0)
+        $(document).ready(function(){
+            function load_unseen_notification(view = '')
+            {
+                $.ajax({
+                    url:"../init/controllers/fetch.php",
+                    method:"POST",
+                    data:{view:view},
+                    dataType:"json",
+                    success:function(data)
                     {
-                        $('.count').html(data.unseen_notification);
+                        $('.dropdown-menu_1').html(data.notification);
+                        if(data.unseen_notification > 0)
+                        {
+                            $('.count').html(data.unseen_notification);
+                        }
                     }
-                }
+                });
+            }
+
+            load_unseen_notification();
+
+            $(document).on('click', '.dropdown-toggle', function(){
+                $('.count').html('');
+                load_unseen_notification('yes');
             });
-        }
 
-        load_unseen_notification();
-
-        $(document).on('click', '.dropdown-toggle', function(){
-            $('.count').html('');
-            load_unseen_notification('yes');
+            setInterval(function(){ 
+                load_unseen_notification();; 
+            }, 5000);
         });
-
-        setInterval(function(){ 
-            load_unseen_notification();; 
-        }, 5000);
-
-    });
     </script>
     </body>
-
     </html>

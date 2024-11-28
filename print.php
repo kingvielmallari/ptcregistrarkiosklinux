@@ -1,11 +1,9 @@
-
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\PrintConnectors\FilePrintConnector;
 
-// Check if data is received from the form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $control_no = isset($_POST['control_no']) ? $_POST['control_no'] : 'N/A';
     $studentID_no = isset($_POST['studentID_no']) ? $_POST['studentID_no'] : 'N/A';
@@ -14,18 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $no_ofcopies = isset($_POST['no_ofcopies']) ? $_POST['no_ofcopies'] : 'N/A';
     $date_request = isset($_POST['date_request']) ? $_POST['date_request'] : 'N/A';
 
-    // Debugging: print received data
     error_log("Received data - Control No: $control_no, Student ID: $studentID_no, Email: $email_address, Document Name: $document_name, Copies: $no_ofcopies, Date Requested: $date_request");
 
     try {
-        // Connect to the printer (adjust the path to your printer)
         $connector = new FilePrintConnector("/dev/usb/lp0");
         $printer = new Printer($connector);
-
-        // Print content
         $printer->setJustification(Printer::JUSTIFY_CENTER);
         $printer->selectPrintMode(Printer::MODE_DOUBLE_WIDTH | Printer::MODE_EMPHASIZED);
-        //$printer->text("\n");
         $printer->text("DOCUMENT\n");
         $printer->text("REQUEST DETAILS\n");
         $printer->text("---------------------------\n");
@@ -42,16 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $printer->text("---------------------------\n");
         $printer->text("Please Proceed to Cashier\nfor Payment.\n");
         $printer->text("---------------------------\n");
-       	$printer->setJustification(Printer::JUSTIFY_CENTER);
-	$printer->text("THANK YOU FOR USING\n");
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->text("THANK YOU FOR USING\n");
         $printer->text("PTC REGISTRAR KIOSK!\n");
         $printer->text("\n\n");
-	$printer->text("\n\n");
-	//$printer->text("\n\n");
+        $printer->text("\n\n");
         $printer->cut();
     } catch (Exception $e) {
         error_log("Error printing: " . $e->getMessage());
     }
 }
 ?>
-

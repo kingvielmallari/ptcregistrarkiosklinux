@@ -2,7 +2,6 @@
 
  include '../model/config/connection2.php';
 
-
 if(isset($_POST['view'])){
 
   if($_POST["view"] != ''){
@@ -10,8 +9,6 @@ if(isset($_POST['view'])){
       $stmt = $conn->prepare('UPDATE tbl_documentrequest SET `notif` = 1 WHERE `notif`= 0');
       $stmt->execute();
       $stmt->get_result();
-
-
   }
 
   $stmt = $conn->prepare('SELECT * FROM tbl_documentrequest ORDER BY request_id DESC LIMIT 5');
@@ -23,7 +20,6 @@ if(isset($_POST['view'])){
 
      $output .= '
 
-
      <li style =" background-color:#ededed;width:100%">
        <a class="nav-item href="#" style="margin-left:10px;">
        <b><a href="request.php" style="color: #000000 !important;"><i class="fa fa-fw fa-file" style="color: #1269af !important"></i>Document Name: '.$row["document_name"].'</b></a>
@@ -32,7 +28,6 @@ if(isset($_POST['view'])){
        </a>
      </li>
      ';
-
    }
   }else{
        $output .= '
@@ -49,7 +44,5 @@ $result = $stmt->get_result();
     );
 
     echo json_encode($data);
-
   }
-
 ?>

@@ -19,7 +19,6 @@
 		$password = trim($_POST['password']);
 	    $account_status = trim($_POST['account_status']);
 		$student_id = trim($_POST['student_id']);
-
 		$course = $conn->edit_student($studentID_no, $first_name, $middle_name, $last_name, $course, $year_level, $date_ofbirth, $gender, $complete_address, $email_address, $mobile_number, $username, $password, $account_status, $student_id);
 		if($course == TRUE){
 		    echo '<div class="alert alert-success">Edit Student Successfully!</div><script> setTimeout(function() {  window.history.go(-1); }, 1000); </script>';

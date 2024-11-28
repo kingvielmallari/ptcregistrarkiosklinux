@@ -14,8 +14,6 @@
                             <li class="nav-item ">
                                 <a class="nav-link" href="student.php"><i class="fa fa-fw fa-user-graduate"></i>Students  <span class="badge badge-success">6</span></a>
                             </li>
-                           
-                        
                             <li class="nav-item ">
                                 <a class="nav-link" href="users.php"><i class="fa fa-fw fa-user-lock"></i>Registrar Staff <span class="badge badge-success">6</span></a>
                             </li>     

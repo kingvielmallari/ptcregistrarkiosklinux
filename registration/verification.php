@@ -1,8 +1,7 @@
 <?php
-// Start session
+
 session_start();
 
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "King123.";
@@ -10,7 +9,6 @@ $dbname = "onlineschooldocuments_db2";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -20,7 +18,6 @@ $error = null;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_id = $_POST['student_id'];
 
-    // Check if student already has an account
     $stmt = $conn->prepare("SELECT first_name FROM tbl_student WHERE studentID_no = ?");
     $stmt->bind_param("s", $student_id);
     $stmt->execute();
@@ -32,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "You already have an account. <a href='../index.php' class='btn btn-primary'>Login</a>";
         }
     } else {
-        // Verify student ID in mis_student table
         $stmt = $conn->prepare("SELECT first_name FROM mis_student WHERE studentID_no = ?");
         $stmt->bind_param("s", $student_id);
         $stmt->execute();

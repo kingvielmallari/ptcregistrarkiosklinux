@@ -4,11 +4,11 @@
 <html lang="en">
  
 <head>
-    <!-- Required meta tags -->
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login</title>
-    <!-- Bootstrap CSS -->
+    
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/libs/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -30,19 +30,14 @@
     
     </style>
 </head>
-
 <body>
 
- <!-- As a heading -->
  <nav class="navbar navbar-dark bg-primary" style="background: rgb(17,10,134);
             background: linear-gradient(90deg, rgba(17,10,134,1) 0%, rgba(9,9,121,1) 28%, rgba(18,105,175,1) 100%);">
   <span class="navbar-brand mb-0 h1">Registrar Login</span>
 <a class="btn btn-light btn-sm" href="../admin/index.php" role="button" style="margin-left: auto">Admin</a>
 </nav>
    
-    <!-- ============================================================== -->
-    <!-- login page  -->
-    <!-- ============================================================== -->
     <div class="splash-container" style="margin-top: 30px">
         <div class="card ">
             <div class="card-header text-center"><img class="prmsu_logo" src="assets/images/prmsu_logo.jpg" alt="prmsu_logo" height="200px"></div>
@@ -50,16 +45,10 @@
                 <form method="post" name="login_form">
 
                     <div class="form-group">
-                   
                         <h1 class="btn btn-dark container-fluid" href="#" role="button"  >
                             Registrar Staff
                         </h1>
-                   
-                    </div>
-                    <br>
-
-
-
+                    </div><br>
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="username" alt="username" type="text" placeholder="Username" autocomplete="off">
                     </div>
@@ -80,12 +69,7 @@
             </div>
         </div>
     </div>
-  
-    <!-- ============================================================== -->
-    <!-- end login page  -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-
+ 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
@@ -100,7 +84,7 @@
 
                     var u_username = $(this).find('input[alt="username"]').val();
                     var p_password = $(this).find('input[alt="password"]').val();
-                   // var s_status = 1;
+                  
 
                     if (u_username === '' && p_password ===''){
                         $('#alert-msg').html('<div class="alert alert-danger"> Required Username and Password!</div>');
@@ -111,7 +95,7 @@
                             data: {
                                 username: u_username,
                                 password: p_password
-                               // status: s_status
+                              
                             },
                             beforeSend:  function(){
                                 $('#alert-msg').html('');

@@ -7,16 +7,13 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="index.php" ><i class="fa fa-fw fa-tachometer-alt"></i>Dashboard <span class="badge badge-success">6</span></a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php"><i class="fa fa-fw fa-tachometer-alt"></i>Dashboard <span class="badge badge-success">6</span></a>
                             </li>
-            
-                           
-                            <li class="nav-item ">
+                            <li class="nav-item">
                                 <a class="nav-link" href="request.php"><i class="fa fa-fw fa-file"></i>All Requests<span class="badge badge-success">6</span></a>
                             </li>
-
-                            <li class="nav-item ">
+                            <li class="nav-item">
                                 <a class="nav-link" href="reports.php"><i class="fa fa-fw fa-chart-bar"></i>Generate Reports<span class="badge badge-success">6</span></a>
                             </li>
                         </ul>

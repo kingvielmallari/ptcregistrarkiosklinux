@@ -1,22 +1,10 @@
     <?php include('main_header/header.php'); ?>
-    <!-- ============================================================== -->
-    <!-- end navbar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- left sidebar -->
-    <!-- ============================================================== -->
+
     <?php include('left_sidebar/sidebar.php'); ?>
-    <!-- ============================================================== -->
-    <!-- end left sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- wrapper  -->
-    <!-- ============================================================== -->
+
     <div class="dashboard-wrapper">
         <div class="container-fluid  dashboard-content">
-            <!-- ============================================================== -->
-            <!-- pageheader -->
-            <!-- ============================================================== -->
+            
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
@@ -32,9 +20,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end pageheader -->
-            <!-- ============================================================== -->
+        
             <?php 
                 include '../init/model/config/connection2.php';
                 $GET_reqid = intval($_GET['request']);
@@ -209,10 +195,7 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
+
     <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../assets/vendor/parsley/parsley.js"></script>
@@ -270,7 +253,7 @@
             });
 
             cancelBtn.addEventListener('click', () => {
-                window.location.href = 'request-list.php'; // Replace with the URL you want to redirect to on cancel
+                window.location.href = 'request-list.php';
             });
         });
     </script>

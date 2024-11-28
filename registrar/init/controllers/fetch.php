@@ -2,7 +2,6 @@
 
  include '../model/config/connection2.php';
 
-
 if(isset($_POST['view'])){
 
   if($_POST["view"] != ''){
@@ -10,7 +9,6 @@ if(isset($_POST['view'])){
       $stmt = $conn->prepare('UPDATE tbl_documentrequest SET `notif` = 1 WHERE `notif`= 0');
       $stmt->execute();
       $stmt->get_result();
-
 
   }
 
@@ -22,7 +20,6 @@ if(isset($_POST['view'])){
    while ($row = $result->fetch_assoc()) {
 
      $output .= '
-
 
      <li style =" background-color:#ededed;width:100%">
        <a class="nav-item href="#" style="margin-left:10px;">

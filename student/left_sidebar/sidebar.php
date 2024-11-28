@@ -17,8 +17,6 @@
                         <a class="nav-link" href="request-list.php"><i class="fa fa-fw fa-file"></i>List of Request <span class="badge badge-success">6</span></a>
                     </li>
                     <li class="nav-item ">
-                        <!-- <a class="nav-link" href="add-request.php"><i class="fa fa-fw fa-plus"></i>Request New  <span class="badge badge-success">6</span></a> -->
-                    <li class="nav-item ">
                         <a class="nav-link" href="profile.php"><i class="fas fa-id-card"></i>Profile <span class="badge badge-success">6</span></a>
                     </li>
                 </ul>
