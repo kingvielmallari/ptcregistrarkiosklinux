@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_id = $_POST['student_id'];
 
     // Check if student already has an account
-    $stmt = $conn->prepare("SELECT first_name FROM mis_student WHERE studentID_no = ?");
+    $stmt = $conn->prepare("SELECT first_name FROM tbl_student WHERE studentID_no = ?");
     $stmt->bind_param("s", $student_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -30,16 +30,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if (!empty($row['first_name'])) {
             $error = "You already have an account. <a href='../index.php' class='btn btn-primary'>Login</a>";
-        } else {
-            // Student ID exists and no account yet, redirect to registration page
-            $_SESSION['student_id'] = $student_id;
-            header("Location: index.php?verified=true");
-            exit();
         }
     } else {
-        $error = "Invalid student ID or You're not a PTC student.";
+        // Verify student ID in mis_student table
+        $stmt = $conn->prepare("SELECT first_name FROM mis_student WHERE studentID_no = ?");
+        $stmt->bind_param("s", $student_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if (empty($row['first_name'])) {
+                $_SESSION['student_id'] = $student_id;
+                header("Location: index.php");
+                exit();
+            } else {
+                $error = "Invalid student ID or You're not a PTC student.";
+            }
+        } else {
+            $error = "Invalid student ID or You're not a PTC student.";
+        }
     }
-
     $stmt->close();
 }
 
@@ -60,7 +70,7 @@ $conn->close();
     if (isset($_GET['verified']) && $_GET['verified'] == 'true') {
         echo "<div class='alert alert-success'>Student ID verified successfully.</div>";
     }
-    // ?>
+    ?>
     <div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
             <div class="row">

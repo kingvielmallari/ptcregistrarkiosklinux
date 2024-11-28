@@ -36,7 +36,7 @@
 		// 			'count'=>$valid
 		// 		);
 		// 	}
-		public function login_student($username, $password, $status) {
+		public function login_student($username, $password) {
 			$stmt = $this->conn->prepare("SELECT * FROM `tbl_student` WHERE `username` = ?") or die($this->conn->error);
 			$stmt->bind_param("s", $username);
 			
@@ -54,8 +54,8 @@
 							'status' => 'inactive' // Indicate that the account is inactive
 						);
 					} else {
-						// Check if password matches or is null
-						if ($fetch['password'] == $password || $password == null) {
+						// Check if password matches
+						if ($fetch['password'] == $password) {
 							return array(
 								'student_id' => htmlentities($fetch['student_id']),
 								'count' => $valid,
