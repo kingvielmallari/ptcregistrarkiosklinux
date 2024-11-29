@@ -7,7 +7,7 @@
  
         <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/libs/css/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="assets/js/jquery.min2.js"></script>
         <style>
             html,
             body {
