@@ -33,7 +33,7 @@
                                 <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Student ID</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-                                        <input data-parsley-type="alphanum" type="text" name="studentID_no" required="" placeholder="" class="form-control">
+                                        <input type="text" name="studentID_no" required="" placeholder="" class="form-control" maxlength="9" pattern="\d{4}-\d{4}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -57,7 +57,7 @@
                                 <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Course</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-                                        <select data-parsley-type="alphanum" type="text" id="course" required="" placeholder="" class="form-control">
+                                        <select name="course" data-parsley-type="alphanum" type="text" id="course" required="" placeholder="" class="form-control">
                                             <option value="">&larr;Select Course &rarr;</option>
                                             <option value="BSIT">BSIT</option>
                                             <option value="BSOA">BSOA</option>
@@ -70,7 +70,7 @@
                                 <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Year level</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-                                        <select data-parsley-type="alphanum" type="text" id="year_level" required="" placeholder="" class="form-control">
+                                        <select name="year_level" data-parsley-type="alphanum" type="text" id="year_level" required="" placeholder="" class="form-control">
                                             <option value="">&larr;Year level &rarr;</option>
                                             <option value="1st Year">1st Year</option>
                                             <option value="2nd Year">2nd Year</option>
@@ -88,7 +88,7 @@
                                 <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Gender</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-                                        <select data-parsley-type="alphanum" type="text" id="gender" required="" placeholder="" class="form-control">
+                                        <select name="gender" data-parsley-type="alphanum" type="text" id="gender" required="" placeholder="" class="form-control">
                                             <option value="">&larr;Select Gender &rarr;</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -117,15 +117,15 @@
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right"><i class="fa fa-user-lock"></i> Account Info</label>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">Username</label>
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">Student ID</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-                                        <input data-parsley-type="alphanum" type="text" name="username" required="" placeholder="" class="form-control">
+                                        <input data-parsley-type="alphanum" type="text" name="username" required="" placeholder="" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Password</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-                                        <input data-parsley-type="alphanum" type="passwrd" name="password" required="" placeholder="" class="form-control">
+                                        <input data-parsley-type="alphanum" type="password" name="password" required="" placeholder="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row text-right">
@@ -182,17 +182,17 @@
                 var b = $(this).find('input[name="first_name"]').val();
                 var c = $(this).find('input[name="middle_name"]').val();
                 var d = $(this).find('input[name="last_name"]').val();
-                var e = $('#course option:selected').val();
-                var f = $('#year_level option:selected').val();
-                var g = $(this).find('input[name="date_ofbirth"]').val();
-                var h = $('#gender option:selected').val();
-                var i = $(this).find('textarea[name="complete_address"]').val();
-                var j = $(this).find('input[name="email_address"]').val();
-                var k = $(this).find('input[name="mobile_number"]').val(); 
-                var l = $(this).find('input[name="username"]').val();
-                var m = $(this).find('input[name="password"]').val();
+                var course = $('#course option:selected').val();
+                var year_level = $('#year_level option:selected').val();
+                var date_ofbirth = $(this).find('input[name="date_ofbirth"]').val();
+                var gender = $('#gender option:selected').val();
+                var complete_address = $(this).find('textarea[name="complete_address"]').val();
+                var email_address = $(this).find('input[name="email_address"]').val();
+                var mobile_number = $(this).find('input[name="mobile_number"]').val(); 
+                var username = $(this).find('input[name="username"]').val();
+                var password = $(this).find('input[name="password"]').val();
 
-                if (a === '' ||  b ===''||  d ===''||  e ==='' ||  f ===''||  g ==='' ||  h ==='' ||  i ==='' || j ==='' ||  k==='' ||  l ==='' ||  m ===''){
+                if (a === '' ||  b ===''||  d ===''||  course ==='' ||  year_level ===''||  date_ofbirth ==='' ||  gender ==='' ||  complete_address ==='' || email_address ==='' ||  mobile_number ==='' ||  username ==='' ||  password ===''){
                     $('#message').html('<div class="alert alert-danger"> Required All Fields!</div>');
                     window.scrollTo(0, 0);
                 } else {
@@ -204,15 +204,15 @@
                             first_name: b,
                             middle_name: c,
                             last_name: d,
-                            course: e,
-                            year_level: f,
-                            date_ofbirth: g,
-                            gender: h,
-                            complete_address: i,
-                            email_address: j,
-                            mobile_number: k,
-                            username: l,
-                            password: m,
+                            course: course,
+                            year_level: year_level,
+                            date_ofbirth: date_ofbirth,
+                            gender: gender,
+                            complete_address: complete_address,
+                            email_address: email_address,
+                            mobile_number: mobile_number,
+                            username: username,
+                            password: password,
                         },
                         success: function(response) {
                             $("#message").html(response);
@@ -223,6 +223,15 @@
                         }
                     });
                 }
+            });
+
+            $('input[name="studentID_no"]').on('input', function() {
+                var value = $(this).val().replace(/\D/g, '');
+                if (value.length > 4) {
+                    value = value.slice(0, 4) + '-' + value.slice(4, 8);
+                }
+                $(this).val(value);
+                $('input[name="username"]').val(value);
             });
         });
     </script>

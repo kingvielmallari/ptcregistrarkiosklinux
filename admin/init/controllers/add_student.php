@@ -1,24 +1,6 @@
 	<?php
 	require_once "../model/class_model.php";
 
-	function createRandomIDnumber() {
-		$chars = "003232303232023232023456789";
-		srand((double)microtime()*1000000);
-		$i = 0;
-		$ran = '' ;
-		while ($i <= 7) {
-
-			$num = rand() % 33;
-
-			$tmp = substr($chars, $num, 1);
-
-			$ran = $ran . $tmp;
-
-			$i++;
-
-		}
-		return $ran;
-	}
 
 		if(ISSET($_POST)){
 			$conn = new class_model();

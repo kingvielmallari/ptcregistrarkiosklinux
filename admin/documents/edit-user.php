@@ -50,9 +50,6 @@
                                     <div class="col-12 col-sm-8 col-lg-6">
                                         <select data-parsley-type="alphanum" type="text" value="<?= $row['desgination']; ?>" id="desgination2" required="" placeholder="" class="form-control">
                                             <option value="<?= $row['desgination']; ?>" hidden><?= $row['desgination']; ?></option>   
-                                            <option value="Administrator">Administrator</option>
-                                            <option value="Administrative Assistant">Administrative Assistant</option>
-                                            <option value="Administrative Aide">Administrative Aide</option>
                                         </select>
                                     </div>
                                 </div>
@@ -178,7 +175,7 @@
                         success: function(response) {
                             $("#message1").html(response);
                             window.scrollTo(0, 0);
-                            window.location.href = '/ptcregistrarkiosk/admin/documents/users.php';
+                            window.location.href = 'users.php';
                         },
                         error: function(response) {
                             console.log("Failed");

@@ -36,7 +36,7 @@
                 $last_name = $row['last_name'];
                 $courses = $row['course'];
                 $year_level = $row['year_level'];
-                $date_ofbirth = strftime('%Y-%m-%d', strtotime($row['date_ofbirth']));
+                $date_ofbirth = date('Y-m-d', strtotime($row['date_ofbirth']));
                 $gender = $row['gender'];
                 $complete_address = $row['complete_address'];
                 $email_address = $row['email_address'];
@@ -82,7 +82,7 @@
                                 <div class="form-group row">
                                     <label class="col-12 col-sm-3 col-form-label text-sm-right">Course</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
-                                        <select data-parsley-type="alphanum" type="text" value="<?= $courses; ?>" id="year_level" required="" placeholder="" class="form-control">
+                                        <select data-parsley-type="alphanum" type="text" name="course" value="<?= $courses; ?>" id="course" required="" placeholder="" class="form-control">
                                             <option value="<?= $courses; ?>" hidden><?= $courses; ?></option>
                                             <option value="BSIT">BSIT</option>
                                             <option value="BSOA">BSOA</option>
