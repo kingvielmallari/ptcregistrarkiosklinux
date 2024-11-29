@@ -92,8 +92,10 @@ $conn->close();
                                 </div>
                                 <div class="form-group row text-right">
                                     <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                    <button type="button" class="btn btn-space btn-secondary" onclick="window.location.href='../index.php'">Cancel</button>
                                         <button class="btn btn-space btn-primary">Verify</button>
                                     </div>
+                                    
                                 </div>
                             </form>
                             <div id="alert-msg">
